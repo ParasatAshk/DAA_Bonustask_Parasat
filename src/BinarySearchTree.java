@@ -43,28 +43,37 @@ public class BinarySearchTree {
     }
 
     /**
-     * Вставка нового ключа в BST.
+     * Вставка нового ключа в BST (итеративная реализация, чтобы исключить StackOverflowError).
      * Если ключ уже существует, дубликаты игнорируются.
      */
     public boolean insert(int key) {
-        int initialSize = size;
-        root = insertRecursive(root, key);
-        return size > initialSize;
-    }
-
-    private Node insertRecursive(Node current, int key) {
-        if (current == null) {
+        if (root == null) {
+            root = new Node(key);
             size++;
-            return new Node(key);
+            return true;
         }
 
-        if (key < current.key) {
-            current.left = insertRecursive(current.left, key);
-        } else if (key > current.key) {
-            current.right = insertRecursive(current.right, key);
+        Node current = root;
+        Node parent = null;
+        while (current != null) {
+            if (key == current.key) {
+                return false; // Дубликат
+            }
+            parent = current;
+            if (key < current.key) {
+                current = current.left;
+            } else {
+                current = current.right;
+            }
         }
-        // Если key == current.key, дубликат не вставляем
-        return current;
+
+        if (key < parent.key) {
+            parent.left = new Node(key);
+        } else {
+            parent.right = new Node(key);
+        }
+        size++;
+        return true;
     }
 
     /**
