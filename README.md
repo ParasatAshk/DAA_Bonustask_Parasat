@@ -8,6 +8,7 @@ Comparative performance analysis and implementation of a Binary Search Tree (BST
 - `src/HashTable.java`: Custom Hash Table with separate chaining and dynamic resizing (load factor = 0.75).
 - `src/PerformanceComparison.java`: Benchmark suite measuring insertion, search hits/misses, and deletion.
 - `src/DataStructuresTest.java`: Verification tests for both data structures.
+- `REPORT.md`: Hand-written analysis report.
 
 ## Time Complexity Comparison
 
